@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "example",
+  "version": "0.1.0",
+  "main": "index.js",
+  "description":  "A sample project structure",
+  "dependencies": {
+    "dotenv": "2.0.*",
+    "knex": "0.12.*",
+    "lodash": "4.16.*",
+    "moment": "2.15.*",
+    "mysql2": "1.1.*"
+  },
+  "devDependencies": {
+    "ajv": "^4.8.2",
+    "ava": "^0.16.0"
+  },
+  "scripts": {
+    "start": "node .",
+    "test": "ava"
+ },
+ "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogoazevedos/example.git"
+  },
+  "keywords": [
+    "sample",
+    "project",
+    "structure"
+  ],
+  "author": "Diogo Azevedo <diogoazevedos@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diogoazevedos/example/issues"
+  },
+  "homepage": "https://github.com/diogoazevedos/example#readme"
+}
