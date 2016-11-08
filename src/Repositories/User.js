@@ -16,3 +16,10 @@ exports.find = (id) => {
       return resolve(null);
     });
 };
+
+exports.create = (entity) => {
+  const builder = knex('user').insert(entity).toSQL();
+
+  return query(builder.sql, builder.bindings)
+    .then(record => entity.fill({ id: record[0].insertId }));
+};

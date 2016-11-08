@@ -2,7 +2,7 @@
   "private": true,
   "name": "example",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "app.js",
   "description":  "A sample project structure",
   "dependencies": {
     "dotenv": "2.0.*",
