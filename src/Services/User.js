@@ -1,4 +1,7 @@
-const { find, create } = require('../Repositories/User');
+const UserRepository = require('../Repositories/User');
 
-exports.find = find;
-exports.create = create;
+const repository = new UserRepository();
+
+exports.all = () => repository.all();
+exports.find = (id, connection = null) => repository.find(id, connection);
+exports.store = (user, connection = null) => repository.store(user, connection);

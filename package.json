@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "example",
+  "name": "skeleton",
   "version": "0.1.0",
   "main": "app.js",
   "description":  "A sample project structure",
@@ -21,7 +21,7 @@
  },
  "repository": {
     "type": "git",
-    "url": "git+https://github.com/diogoazevedos/example.git"
+    "url": "git+https://github.com/diogoazevedos/skeleton.git"
   },
   "keywords": [
     "sample",
@@ -31,7 +31,7 @@
   "author": "Diogo Azevedo <diogoazevedos@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diogoazevedos/example/issues"
+    "url": "https://github.com/diogoazevedos/skeleton/issues"
   },
-  "homepage": "https://github.com/diogoazevedos/example#readme"
+  "homepage": "https://github.com/diogoazevedos/skeleton#readme"
 }

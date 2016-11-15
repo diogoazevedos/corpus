@@ -25,22 +25,19 @@ const execute = (connection, sql, params) => connection.execute(sql, params)
 /**
  * Execute a query.
  *
- * @param  {PoolConnection}  connection
  * @param  {String}  sql
  * @param  {Array}  params
+ * @param  {PoolConnection}  [connection=null]
  * @return {Promise}
  */
-exports.query = (connection, sql, params) => {
-  if (params === undefined) {
-    params = sql;
-    sql = connection;
-
-    return connect().then(connection => (
-      execute(connection, sql, params).finally(() => connection.release())
-    ));
+exports.query = (sql, params, connection = null) => {
+  if (!!connection) {
+    return execute(connection, sql, params);
   }
 
-  return execute(connection, sql, params);
+  return connect().then(connection => (
+    execute(connection, sql, params).finally(() => connection.release())
+  ));
 };
 
 /**

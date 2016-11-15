@@ -1,25 +1,14 @@
-const knex = require('knex')({ client: 'mysql' });
-const { resolve } = require('bluebird');
-
 const User = require('../Entities/User');
-const { query } = require('../Database/Connection');
+const Repository = require('./Repository');
 
-exports.find = (id) => {
-  const builder = knex('user').where('id', id).toSQL();
+class UserRepository extends Repository {
+  get table() {
+    return 'users';
+  }
 
-  return query(builder.sql, builder.bindings)
-    .then((record) => {
-      if (record[0].length) {
-        return resolve(new User(record[0][0]));
-      }
+  get model() {
+    return User;
+  }
+}
 
-      return resolve(null);
-    });
-};
-
-exports.create = (entity) => {
-  const builder = knex('user').insert(entity).toSQL();
-
-  return query(builder.sql, builder.bindings)
-    .then(record => entity.fill({ id: record[0].insertId }));
-};
+module.exports = UserRepository;
