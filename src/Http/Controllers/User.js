@@ -1,12 +1,12 @@
-const Controller  = require('./Controller');
+const Controller = require('./Controller');
 const { all, find } = require('../../Services/User');
 
 class UserController extends Controller {
-   index() {
+   static index() {
      return all();
    }
 
-   show(id) {
+   static show(id) {
      return find(id);
    }
 }

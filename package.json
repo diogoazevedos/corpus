@@ -3,13 +3,17 @@
   "name": "skeleton",
   "version": "0.1.0",
   "main": "app.js",
-  "description":  "A sample project structure",
+  "description": "A sample project structure",
   "dependencies": {
+    "body-parser": "1.15.*",
     "dotenv": "2.0.*",
     "knex": "0.12.*",
     "lodash": "4.16.*",
     "moment": "2.15.*",
-    "mysql2": "1.1.*"
+    "mysql2": "1.1.*",
+    "spirit": "0.4.*",
+    "spirit-express": "0.2.*",
+    "spirit-router": "0.4.*"
   },
   "devDependencies": {
     "ajv": "^4.8.2",
@@ -18,8 +22,8 @@
   "scripts": {
     "start": "node .",
     "test": "ava"
- },
- "repository": {
+  },
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/diogoazevedos/skeleton.git"
   },
