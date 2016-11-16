@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "skeleton",
+  "name": "corpus",
   "version": "0.1.0",
   "main": "app.js",
-  "description": "A sample project structure",
+  "description": "Corpus is a micro framework built on top of Spirit",
   "dependencies": {
     "body-parser": "1.15.*",
     "dotenv": "2.0.*",
