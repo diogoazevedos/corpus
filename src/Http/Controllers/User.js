@@ -1,5 +1,5 @@
 const Controller = require('./Controller');
-const { all, find } = require('../../Services/User');
+const { all, find, store } = require('../../Services/User');
 
 class UserController extends Controller {
    static index() {
@@ -8,6 +8,10 @@ class UserController extends Controller {
 
    static show(id) {
      return find(id);
+   }
+
+   static store(request) {
+     return store(request);
    }
 }
 
