@@ -1,4 +1,7 @@
-require('./bootstrap');
+require('dotenv').config();
+
+const { connect } = require('./src/Database/Connection');
+connect();
 
 const express  = require('spirit-express');
 const { node } = require('spirit');

@@ -2,7 +2,7 @@
   "private": true,
   "name": "corpus",
   "version": "0.1.0",
-  "main": "app.js",
+  "main": "index.js",
   "description": "Corpus is a micro framework built on top of Spirit",
   "dependencies": {
     "body-parser": "1.15.*",
