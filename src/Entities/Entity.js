@@ -6,7 +6,21 @@ class Entity {
     this.fill(attributes);
   }
 
-  fill(attributes) {
+  fill(attributes = {}) {
+    map(attributes, (value, key) => {
+      if (this.fillable.includes(key)) {
+        this[key] = value;
+      }
+
+      if (value && this.dates.includes(key)) {
+        this[key] = utc(value);
+      }
+    });
+
+    return this;
+  }
+
+  force(attributes = {}) {
     map(attributes, (value, key) => {
       this[key] = value;
 
@@ -19,6 +33,10 @@ class Entity {
   }
 
   get dates() {
+    return [];
+  }
+
+  get fillable() {
     return [];
   }
 }

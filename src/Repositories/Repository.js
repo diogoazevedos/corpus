@@ -16,7 +16,7 @@ class Repository {
 
     return query(sql, bindings, connection).then((record) => {
       if (record[0].length) {
-        return resolve(record[0].map(record => new Model(record)));
+        return resolve(record[0].map(record => new Model().force(record)));
       }
 
       return resolve(null);
@@ -36,7 +36,7 @@ class Repository {
 
     return query(sql, bindings, connection).then((record) => {
       if (record[0].length) {
-        return resolve(new Model(record[0][0]));
+        return resolve(new Model().force(record[0][0]));
       }
 
       return resolve(null);
@@ -46,12 +46,15 @@ class Repository {
   /**
    * Store an user.
    *
-   * @param  {Object}  user
+   * @param  {Object}  data
    * @param  {PoolConnection}  [connection=null]
    * @return {Promise}
    */
-  store(user, connection = null) {
-    const { sql, bindings } = knex(this.table).insert(user).toSQL();
+  store(data, connection = null) {
+    const Model = this.model;
+    const model = new Model().fill(data);
+
+    const { sql, bindings } = knex(this.table).insert(model).toSQL();
 
     return query(sql, bindings, connection)
       .then(record => this.find(String(record[0].insertId), connection));

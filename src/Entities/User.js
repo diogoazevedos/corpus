@@ -6,6 +6,13 @@ class User extends Entity {
       'created_at',
     ];
   }
+
+  get fillable() {
+    return [
+      'name',
+      'email',
+    ];
+  }
 }
 
 module.exports = User;
