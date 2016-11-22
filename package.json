@@ -21,7 +21,8 @@
   },
   "scripts": {
     "start": "node .",
-    "test": "ava"
+    "test": "ava",
+    "migrate": "knex migrate:latest"
   },
   "repository": {
     "type": "git",
