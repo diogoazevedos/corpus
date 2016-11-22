@@ -10,6 +10,7 @@ const { json } = require('body-parser');
 const routes = require('./routes/api');
 const app = node.adapter(routes, [
   express(json()),
+  handler => request => handler(request).catch(error => error),
 ]);
 
 const { createServer } = require('http');

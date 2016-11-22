@@ -23,5 +23,4 @@ exports.store = (request, connection = null) => (
   })
   .then(() => repository.store(request, connection).then(single))
   .then(user => response(201, user))
-  .catch(error => response(422, error))
 );

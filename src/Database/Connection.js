@@ -1,4 +1,5 @@
-const { reject, resolve } = require('bluebird');
+const response = require('../Support/Response');
+const { reject } = require('bluebird');
 const { createPool } = require('mysql2/promise');
 
 const database = [];
@@ -9,7 +10,7 @@ const database = [];
  * @return {Promise}
  */
 const connect = () => database.pool.getConnection()
-  .catch(() => reject('Falha ao conectar com o banco'));
+  .catch(() => reject(response(500, 'Falha ao conectar com o banco')));
 
 /**
  * Execute the given sql with the given params in the given connection.
@@ -20,7 +21,7 @@ const connect = () => database.pool.getConnection()
  * @return {Promise}
  */
 const execute = (connection, sql, params) => connection.execute(sql, params)
-  .catch(() => reject('Falha ao executar a operação'));
+  .catch(() => reject(response(500, 'Falha ao executar a operação')));
 
 /**
  * Execute a query.
@@ -47,10 +48,10 @@ exports.query = (sql, params, connection = null) => {
  */
 exports.transaction = () => connect().then(connection => (
   connection.query('START TRANSACTION')
-    .then(() => resolve(connection))
+    .then(() => connection)
     .catch(() => {
       connection.release();
-      return reject('Falha ao iniciar um transação');
+      return reject(response(500, 'Falha ao iniciar um transação'));
     })
 ));
 
@@ -71,10 +72,10 @@ const rollback = exports.rollback = connection => connection.query('ROLLBACK')
  * @return {Promise}
  */
 exports.commit = connection => connection.query('COMMIT')
-  .then(() => resolve(connection.release()))
+  .then(() => connection.release())
   .catch(() => {
     rollback();
-    return reject('Falha ao completar a transação');
+    return reject(response(500, 'Falha ao completar a transação'));
   });
 
 /**
