@@ -1,6 +1,4 @@
 const knex = require('knex')({ client: 'mysql' });
-
-const { resolve } = require('bluebird');
 const { query } = require('../Database/Connection');
 
 class Repository {
@@ -12,15 +10,10 @@ class Repository {
    */
   all(connection = null) {
     const { sql, bindings } = knex(this.table).toSQL();
-    const Model = this.model;
 
-    return query(sql, bindings, connection).then((record) => {
-      if (record[0].length) {
-        return resolve(record[0].map(record => new Model().force(record)));
-      }
-
-      return resolve(null);
-    });
+    return query(sql, bindings, connection).then(record => (
+      record[0].map(record => new this.model().force(record))
+    ));
   }
 
   /**
@@ -32,14 +25,13 @@ class Repository {
    */
   find(id, connection = null) {
     const { sql, bindings } = knex(this.table).where('id', id).toSQL();
-    const Model = this.model;
 
     return query(sql, bindings, connection).then((record) => {
       if (record[0].length) {
-        return resolve(new Model().force(record[0][0]));
+        return new this.model().force(record[0][0]);
       }
 
-      return resolve(null);
+      return null;
     });
   }
 
@@ -51,8 +43,7 @@ class Repository {
    * @return {Promise}
    */
   store(data, connection = null) {
-    const Model = this.model;
-    const model = new Model().fill(data);
+    const model = new this.model().fill(data);
 
     const { sql, bindings } = knex(this.table).insert(model).toSQL();
 
