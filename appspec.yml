@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/corpus
+
+hooks:
+  ApplicationStop:
+    - location: deploy/destroy
+      timeout: 180
+  AfterInstall:
+    - location: deploy/install
+      timeout: 300

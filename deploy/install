@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /home/ubuntu/corpus
+
+npm i --production
+npm run migrate
+pm2 start ecosystem.yml
