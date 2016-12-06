@@ -1,17 +1,14 @@
 require('dotenv').config();
 
+const { node: { adapter } } = require('spirit');
+const { createServer } = require('http');
 const { connect } = require('./src/Database/Connection');
+const routes = require('./routes');
+
 connect();
 
-const express  = require('spirit-express');
-const { node } = require('spirit');
-const { json } = require('body-parser');
-
-const routes = require('./routes/api');
-const app = node.adapter(routes, [
-  express(json()),
+const app = adapter(routes, [
   handler => request => handler(request).catch(error => error),
 ]);
 
-const { createServer } = require('http');
 createServer(app).listen(process.env.PORT || 1337);
